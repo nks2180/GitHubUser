@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#C82506</color>
+    <color name="colorPrimaryDark">#C82506</color>
+    <color name="colorAccent">#C82506</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="dark_grey">#444343</color>
+    <color name="light_grey">#6c6a6a</color>
+
+    <color name="bg_activity">#eeeeee</color>
+    <color name="divider">#eeeeee</color>
+
+    <color name="holo_blue_light">#009999</color>
+    <color name="holo_red_light">#ff0000</color>
+    <color name="holo_green_light">#9fee00</color>
+    <color name="holo_red_dark">#a60000</color>
+
+    <array name="git_event_initials_colors">
+        <item>#ACD0C0</item>
+        <item>#C4DFE6</item>
+        <item>#8BC34A</item>
+        <item>#a67c52</item>
+        <item>#f26c4f</item>
+        <item>#E2DFA2</item>
+        <item>#795548</item>
+        <item>#9E9E9E</item>
+        <item>#03A9F4</item>
+        <item>#536DFE</item>
+        <item>#f68e56</item>
+        <item>#FF5252</item>
+        <item>#f26c4f</item>
+    </array>
+</resources>
