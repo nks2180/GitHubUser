@@ -33,8 +33,8 @@ public class GitEventsPresenter extends BasePresenterImpl<GitEventsView> impleme
     private int mPageCount = 1;
     private boolean isLoadMoreAllowed = true;
     boolean mIsSwipeRefresh = false;
+    String mUserName = "";
 
-    // https://api.github.com/users/JakeWharton/events?page=2&per_page=10
     @Inject
     GitEventsPresenter(Context baseContext) {
         super(baseContext);
@@ -43,8 +43,10 @@ public class GitEventsPresenter extends BasePresenterImpl<GitEventsView> impleme
     @Override
     public void onCreate() {
         super.onCreate();
-        view.setUpRecyclerView();
-        fetchEvents(true);
+    }
+
+    public void setUserName(String userName) {
+        this.mUserName = userName;
     }
 
     public void fetchEvents(boolean isSwipeRefresh) {
@@ -59,7 +61,7 @@ public class GitEventsPresenter extends BasePresenterImpl<GitEventsView> impleme
         HashMap<String, String> requestParams = new HashMap<>();
         requestParams.put("page", String.valueOf(mPageCount));
         requestParams.put("per_page", String.valueOf(GitUtils.RESULT_PER_PAGE_COUNT));
-        requestParams.put(GitUtils.STR_USER_NAME, "JakeWharton");
+        requestParams.put(GitUtils.STR_USER_NAME, mUserName);
         requestBuilder.setExtraParameters(requestParams);
         apiController.hitApi(requestBuilder, this);
     }

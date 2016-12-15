@@ -82,6 +82,9 @@ public class GitEventsActivity extends BaseViewPresenterActivity<GitEventsPresen
             GitUtils.loadRoundedImageThroughPicasso(mContext, mUserAccount.getAvatarUrl(), fabAccount, R.drawable.ic_fab_account);
 
         }
+        setUpRecyclerView();
+        eventsPresenter.setUserName(mUserAccount.getLogin());
+        eventsPresenter.fetchEvents(true);
 
     }
 
@@ -153,9 +156,9 @@ public class GitEventsActivity extends BaseViewPresenterActivity<GitEventsPresen
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         cardVw.setVisibility(GONE);
-        fabAccount.setVisibility(GONE);
+        fabAccount.setVisibility(View.GONE);
+        super.onBackPressed();
     }
 
     @Override
