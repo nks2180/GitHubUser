@@ -20,4 +20,8 @@ public interface ApiService {
     @GET("users/{userName}/events")
     Call<String> fetchGitEvents(@Path("userName") String userName, @QueryMap Map<String, String> requestParams);
 
+    @GET("users/{userName}")
+    Call<String> validateUser(@Path("userName") String userName, @QueryMap Map<String, String> requestParams);
+
+
 }

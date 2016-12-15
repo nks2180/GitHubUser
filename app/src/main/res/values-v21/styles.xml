@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <style name="AppTheme.NoActionBar">
+                <item name="windowActionBar">false</item>
+                <item name="windowNoTitle">true</item>
+                <item name="windowActionModeOverlay">true</item>
+                <item name="actionModeBackground">@color/colorPrimaryDark</item>
+                <item name="android:windowContentTransitions">true</item>
+                <!-- enable overlapping of exiting and entering activities-->
+                <item name="android:windowAllowEnterTransitionOverlap">true</item>
+                <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        </style>
+
+        <style name="AppTheme.GitEvent">
+                <item name="android:windowSharedElementEnterTransition">@transition/dribbble_player_shared_enter</item>
+                <item name="android:windowTransitionBackgroundFadeDuration">200</item>
+        </style>
+</resources>

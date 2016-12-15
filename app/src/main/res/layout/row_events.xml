@@ -15,7 +15,7 @@
         android:background="@drawable/selector_white_rectangle"
         tools:ignore="RtlHardcoded">
 
-        <com.app.gitevent.customViews.HFTextView
+        <com.app.gitevent.customViews.GitTextView
             android:id="@+id/txtVw_dateTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:layout_marginRight="@dimen/margin_twelve"
             android:gravity="center"/>
 
-        <com.app.gitevent.customViews.HFTextView
+        <com.app.gitevent.customViews.GitTextView
             android:id="@+id/txtVw_eventName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:textSize="@dimen/font_eighteen"
             tools:text="CreateEvent"/>
 
-        <com.app.gitevent.customViews.HFTextView
+        <com.app.gitevent.customViews.GitTextView
             android:id="@+id/txtVw_branch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             android:textSize="@dimen/font_fourteen"
             tools:text="Master"/>
 
-        <com.app.gitevent.customViews.HFTextView
+        <com.app.gitevent.customViews.GitTextView
             android:id="@+id/txtVw_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

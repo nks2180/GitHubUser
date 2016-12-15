@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/frmLyt_events"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:background="@color/bg_activity">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/frmLyt_events"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_activity">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout_events"
@@ -15,12 +15,12 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerVw_events"
             android:layout_width="match_parent"
-            android:clipToPadding="false"
             android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:fillViewport="true"
             android:isScrollContainer="false"
             android:scrollbars="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:fillViewport="true"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <ProgressBar
@@ -31,7 +31,27 @@
         android:layout_centerInParent="true"
         android:visibility="visible"/>
 
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardVw"
+        android:layout_width="@dimen/fab_size"
+        android:layout_height="@dimen/fab_size"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/margin_sixteen"
+        android:transitionName="@string/transition_fab_account"
+        app:cardBackgroundColor="@color/transperent"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="false">
 
+        <ImageView
+            android:id="@+id/fab_account"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_fab_account"
+            />
+
+    </android.support.v7.widget.CardView>
 </RelativeLayout>
 
 

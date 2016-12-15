@@ -2,6 +2,7 @@ package com.app.gitevent.component;
 
 import com.app.gitevent.GitApplication;
 import com.app.gitevent.activity.GitEventsActivity;
+import com.app.gitevent.activity.LoginActivity;
 import com.app.gitevent.module.ApplicationModule;
 import com.app.gitevent.module.DatabaseModule;
 import com.app.gitevent.module.NetModule;
@@ -20,4 +21,6 @@ public interface ApplicationComponent {
     void inject(GitApplication materialApplication);
 
     void inject(GitEventsActivity gitEventsActivity);
+
+    void inject(LoginActivity loginActivity);
 }

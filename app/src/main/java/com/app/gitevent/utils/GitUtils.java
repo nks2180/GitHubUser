@@ -6,11 +6,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.app.gitevent.R;
+import com.app.gitevent.customViews.GitTextView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -24,10 +28,11 @@ import java.util.concurrent.TimeUnit;
  * Created by niranjan on 12/7/16.
  */
 
-public class HtUtils {
+public class GitUtils {
     //public static String yyyyMMdd = ;  2016-12-07T06:52:16Z
     public static String yyyyMMddhhmmZ = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     public static String hhmma = "hh:mm a";
+    public static String  MMMMddyyyy= "MMMM dd, yyyy";
 
     public static final int DEFAULT_GROUP_ID = 1000;
     public static final int DEFAULT_CHILD_ID = 10000;
@@ -43,6 +48,7 @@ public class HtUtils {
     private static long miliSecsInOneMin = 60*1000;
     private static long miliSecsInOneHour = 60 * miliSecsInOneMin;
     private static long miliSecsInOneDay = 24 * miliSecsInOneHour;
+    public static String EXTRA_ACOOUNT_OBJ = "extra_acoount_obj";
 
     public static Date parseDateString(String dateFormat, String dateString) {
         try {
@@ -167,9 +173,10 @@ public class HtUtils {
         Drawable drawable = ContextCompat.getDrawable(mContext, placeholderDrawable);
 
         if (URLUtil.isValidUrl(picURL)) {
-            Picasso.with(mContext).load(picURL).placeholder(drawable).error(drawable).transform(RoundedCornersTransform.getTransformation(imgVw)).into(imgVw, new Callback() {
+            Picasso.with(mContext).load(picURL).placeholder(drawable).error(drawable).transform(new CircleTransform()).into(imgVw, new Callback() {
                 @Override
                 public void onSuccess() {
+                    //imgVw.setBackgroundResource(0);
                 }
 
                 @Override
@@ -202,6 +209,29 @@ public class HtUtils {
             Toast.makeText(ctx, "No internet connnection, please try again later.", Toast.LENGTH_LONG).show();
         }
         return isConnected;
+    }
+
+    public static RequestProgressDialog getRequestProgressDialog(Context mContext, String loadingMessage) {
+        RequestProgressDialog progressDialog = new RequestProgressDialog(mContext, loadingMessage, 0);
+        return progressDialog;
+    }
+
+    public static void hideKeyboard(View view, Context context) {
+        try {
+            InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setTextIntoTextView(GitTextView txtVw, String text){
+        if (!TextUtils.isEmpty(text)) {
+            txtVw.setText(text);
+            txtVw.setVisibility(View.VISIBLE);
+        }
+        else
+            txtVw.setVisibility(View.GONE);
     }
 
 }

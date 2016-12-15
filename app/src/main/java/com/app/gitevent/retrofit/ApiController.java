@@ -1,6 +1,6 @@
 package com.app.gitevent.retrofit;
 
-import com.app.gitevent.utils.HtUtils;
+import com.app.gitevent.utils.GitUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.Map;
@@ -28,15 +28,23 @@ public class ApiController<T> {
     }
 
     private Call<String> getApiFromApiType(int apiType, Map<String, String> extraParams) {
+        String userName = "";
         switch (apiType) {
             case NetworkConstants.API_FETCH_GIT_EVENTS:
-                String userName = "";
-                if (extraParams.containsKey(HtUtils.STR_USER_NAME))
+
+                if (extraParams.containsKey(GitUtils.STR_USER_NAME))
                 {
-                    userName = extraParams.get(HtUtils.STR_USER_NAME);
-                    extraParams.remove(HtUtils.STR_USER_NAME);
+                    userName = extraParams.get(GitUtils.STR_USER_NAME);
+                    extraParams.remove(GitUtils.STR_USER_NAME);
                 }
                 return apiService.fetchGitEvents(userName, extraParams);
+            case NetworkConstants.API_VALIDATE_USER:
+                if (extraParams.containsKey(GitUtils.STR_USER_NAME))
+                {
+                    userName = extraParams.get(GitUtils.STR_USER_NAME);
+                    extraParams.remove(GitUtils.STR_USER_NAME);
+                }
+                return apiService.validateUser(userName, extraParams);
         }
     return null;
     }
@@ -57,6 +65,8 @@ public class ApiController<T> {
                 if(response.isSuccessful()) {
                     handleApiResponse(response.body());
                 }
+                else
+                    handleApiResponse(null);
             } catch (Exception e) {
                 e.printStackTrace();
             }

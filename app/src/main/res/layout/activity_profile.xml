@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    android:orientation="vertical"
+              android:padding="@dimen/margin_twenty"
+              tools:ignore="RtlHardcoded"
+    android:gravity="center_horizontal">
+
+    <ImageView android:id="@+id/imgVw_avatar"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_account"
+        android:transitionName="@string/transition_fab_avatar"
+        />
+
+    <com.app.gitevent.customViews.GitTextView
+        android:id="@+id/txtVw_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Niranjan Kumar"
+        android:textSize="@dimen/font_twenty"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/margin_twenty"/>
+    <com.app.gitevent.customViews.GitTextView
+        android:id="@+id/txtVw_userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="nks2180"
+        android:textSize="@dimen/font_sixteen"
+        android:textColor="@color/dark_grey"
+        android:layout_marginTop="@dimen/margin_eight"/>
+
+    <com.app.gitevent.customViews.GitTextView
+        android:id="@+id/txtVw_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Delhi, India"
+        android:textSize="@dimen/font_sixteen"
+        android:textColor="@color/dark_grey"
+        android:layout_marginTop="@dimen/margin_eight"/>
+
+    <com.app.gitevent.customViews.GitTextView
+        android:id="@+id/txtVw_bio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Bio about Author"
+        android:textSize="@dimen/font_sixteen"
+        android:layout_marginTop="@dimen/margin_thirtySix"/>
+
+
+    <com.app.gitevent.customViews.GitTextView
+        android:id="@+id/txtVw_email_company"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="nks2170@gmail.com"
+        android:textSize="@dimen/font_sixteen"
+        android:layout_marginTop="@dimen/margin_twenty"/>
+
+    <com.app.gitevent.customViews.GitTextView
+        android:id="@+id/txtVw_blog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="http://jakewharton.com"
+        android:textSize="@dimen/font_sixteen"
+        android:layout_marginTop="@dimen/margin_twenty"/>
+    <com.app.gitevent.customViews.GitTextView
+        android:id="@+id/txtVw_following_followers_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Followers: 40"
+        android:textSize="@dimen/font_sixteen"
+        android:layout_marginTop="@dimen/margin_twenty"/>
+
+
+    <com.app.gitevent.customViews.GitTextView
+        android:id="@+id/txtVw_createdAt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Created at"
+        android:textSize="@dimen/font_twelve"
+        android:layout_marginTop="@dimen/margin_thirtyTwo"/>
+
+
+</LinearLayout>

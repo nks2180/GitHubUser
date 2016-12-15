@@ -13,23 +13,23 @@ import com.app.gitevent.utils.FontCache;
  * Created by niranjan on 11/14/16.
  */
 
-public class HFTextView extends AppCompatTextView
+public class GitTextView extends AppCompatTextView
 {
 
     public static final String ANDROID_SCHEMA = "http://schemas.android.com/apk/res/android";
 
     private boolean isLight;
 
-    public HFTextView(Context context, AttributeSet attrs, int defStyle) {
+    public GitTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context, attrs, defStyle);
     }
 
-    public HFTextView(Context context, AttributeSet attrs) {
+    public GitTextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public HFTextView(Context context) {
+    public GitTextView(Context context) {
         this(context,null,0);
     }
 

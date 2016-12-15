@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.app.gitevent.R;
-import com.app.gitevent.customViews.HFTextView;
+import com.app.gitevent.customViews.GitTextView;
 import com.app.gitevent.model.GitEvent;
-import com.app.gitevent.utils.HtUtils;
+import com.app.gitevent.utils.GitUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,13 +24,13 @@ public class EventsViewHolder extends RecyclerView.ViewHolder {
     Context mContext;
 
     @BindView(R.id.txtVw_dateTime)
-    HFTextView txtVwDateTime;
+    GitTextView txtVwDateTime;
     @BindView(R.id.txtVw_eventName)
-    HFTextView txtVwEventName;
+    GitTextView txtVwEventName;
     @BindView(R.id.txtVw_branch)
-    HFTextView txtVwBranch;
+    GitTextView txtVwBranch;
     @BindView(R.id.txtVw_description)
-    HFTextView txtVwDescription;
+    GitTextView txtVwDescription;
     @BindView(R.id.imgVw_avatar)
     ImageView imgVwAvatar;
 
@@ -48,8 +48,8 @@ public class EventsViewHolder extends RecyclerView.ViewHolder {
 
     public void loadDataIntoUI(EventsViewHolder eventsViewHolder, GitEvent event) {
         txtVwEventName.setText(event.getType());
-        eventsViewHolder.txtVwDateTime.setText(HtUtils.getTimeAgo(HtUtils.yyyyMMddhhmmZ, event.getCreatedAt()));
-        HtUtils.loadRoundedImageThroughPicasso(mContext, event.getActor().getAvatarUrl(), eventsViewHolder.imgVwAvatar, R.drawable.ic_account);
+        eventsViewHolder.txtVwDateTime.setText(GitUtils.getTimeAgo(GitUtils.yyyyMMddhhmmZ, event.getCreatedAt()));
+        GitUtils.loadRoundedImageThroughPicasso(mContext, event.getActor().getAvatarUrl(), eventsViewHolder.imgVwAvatar, R.drawable.ic_account);
 
         eventsViewHolder.txtVwBranch.setText(event.getRepo().getName());
 

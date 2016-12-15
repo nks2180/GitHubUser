@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.gitevent.model.GitEvent;
-import com.app.gitevent.utils.HtUtils;
+import com.app.gitevent.utils.GitUtils;
 import com.app.gitevent.utils.LoadMoreCallbacks;
 import com.app.gitevent.viewHolders.EventsViewHolder;
 import com.app.gitevent.viewHolders.LoadMoreViewHolder;
@@ -33,11 +33,11 @@ public class GitEventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
-            case HtUtils.VIEW_TYPE_EVENTS:
+            case GitUtils.VIEW_TYPE_EVENTS:
                 View eventsView = LayoutInflater.from(parent.getContext())
                         .inflate(EventsViewHolder.getLayoutResource(), parent, false);
                 return new EventsViewHolder(eventsView, mContext);
-            case HtUtils.VIEW_TYPE_LOAD_MORE:
+            case GitUtils.VIEW_TYPE_LOAD_MORE:
                 View loadMoreView = LayoutInflater.from(parent.getContext())
                         .inflate(LoadMoreViewHolder.getLayoutResource(), parent, false);
                 return new LoadMoreViewHolder(loadMoreView, mContext);
@@ -53,12 +53,12 @@ public class GitEventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
         switch (viewHolder.getItemViewType()) {
-            case HtUtils.VIEW_TYPE_EVENTS:
+            case GitUtils.VIEW_TYPE_EVENTS:
                 GitEvent event = mEvents.get(position);
                 EventsViewHolder eventsViewHolder = (EventsViewHolder) viewHolder;
                 eventsViewHolder.loadDataIntoUI(eventsViewHolder, event);
                 break;
-            case HtUtils.VIEW_TYPE_LOAD_MORE:
+            case GitUtils.VIEW_TYPE_LOAD_MORE:
                 LoadMoreViewHolder loadMoreViewHolder = (LoadMoreViewHolder) viewHolder;
                 loadMoreViewHolder.toggleLoadMoreVisibility(isLoadingFeeds);
                 break;
@@ -78,9 +78,9 @@ public class GitEventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public int getItemViewType(int position) {
 
         if (position == mEvents.size())
-            return HtUtils.VIEW_TYPE_LOAD_MORE;
+            return GitUtils.VIEW_TYPE_LOAD_MORE;
         else
-            return HtUtils.VIEW_TYPE_EVENTS;
+            return GitUtils.VIEW_TYPE_EVENTS;
     }
 
     public void setIsLoadMoreFeeds(boolean isLoading) {
