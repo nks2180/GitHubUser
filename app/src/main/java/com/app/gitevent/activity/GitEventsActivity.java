@@ -92,7 +92,7 @@ public class GitEventsActivity extends BaseViewPresenterActivity<GitEventsPresen
 
     private void loadProfileImage(){
         if (null != mUserAccount && !TextUtils.isEmpty(mUserAccount.getAvatarUrl())) {
-            GitUtils.loadRoundedImageThroughPicasso(mContext, mUserAccount.getAvatarUrl(), fabAccount, R.drawable.ic_fab_account);
+            GitUtils.loadRoundedImageThroughPicasso(mContext, mUserAccount.getAvatarUrl(), fabAccount, R.drawable.ic_round_slot);
 
         }
     }

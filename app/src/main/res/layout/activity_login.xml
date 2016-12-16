@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/bg_activity"
+              android:background="@color/purpele"
               android:gravity="center_horizontal"
                 android:padding="@dimen/margin_twenty"
               android:orientation="vertical">
@@ -14,6 +14,7 @@
         android:layout_marginTop="@dimen/margin_thirtySix"
         android:src="@mipmap/ic_launcher"
         android:layout_centerHorizontal="true"
+        android:visibility="gone"
         android:transitionName="@string/transition_login_image"/>
 
     <LinearLayout
@@ -21,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginBottom="@dimen/margin_twenty"
-        android:layout_marginTop="@dimen/margin_thirtyTwo"
+        android:layout_marginTop="120dp"
         android:background="@drawable/dialog_background"
         android:clickable="true"
         android:gravity="center_horizontal"
@@ -31,26 +32,35 @@
         android:transitionName="@string/transition_login_btn"
         android:transitionGroup="false">
 
-        <EditText
-            android:id="@+id/edtTxt_userName"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_twenty"
-            android:layout_marginTop="@dimen/margin_twelve"
-            android:hint="Enter Git UserName"
-            android:textSize="@dimen/font_sixteen"
-            android:textColor="@color/black"
-            android:ellipsize="end"
-            android:padding="@dimen/margin_twelve"
-            android:singleLine="true"
-            android:imeOptions="actionGo"
-            android:textColorHint="@color/dark_grey"></EditText>
+            android:layout_marginTop="@dimen/margin_twelve">
+
+            <EditText
+                android:id="@+id/edtTxt_userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/github_username"
+                android:textSize="@dimen/font_sixteen"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:padding="@dimen/margin_twelve"
+                android:singleLine="true"
+                android:imeOptions="actionGo"
+                android:textColorHint="@color/dark_grey"></EditText>
+
+        </android.support.design.widget.TextInputLayout>
+
+
 
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_submit"
-        android:layout_width="wrap_content"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/margin_eight"
         android:paddingLeft="@dimen/margin_fifty"
@@ -58,9 +68,10 @@
         android:paddingTop="@dimen/margin_eight"
         android:maxLines="1"
         android:imeOptions="actionGo"
-        android:text="Submit"
+        android:text="@string/view"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="245dp"
-        android:theme="@style/LoginButton"/>
+        android:background="@drawable/selector_btn"
+        android:textColor="@color/white"/>
 
 </RelativeLayout>

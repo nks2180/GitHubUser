@@ -9,5 +9,8 @@
     <string name="transition_event_name"  translatable="false">transition_event_name</string>
     <string name="please_wait">Please wait</string>
     <string name="dot_bullet">\u2022</string>
+    <string name="github_username">GitHub UserName</string>
+    <string name="user">USER</string>
+    <string name="view">VIEW</string>
 
 </resources>

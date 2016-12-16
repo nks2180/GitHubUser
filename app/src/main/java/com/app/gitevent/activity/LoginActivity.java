@@ -49,6 +49,7 @@ public class LoginActivity extends BaseViewPresenterActivity<LoginPresenter> imp
 
     Context mContext;
     RequestProgressDialog progressDialog;
+    boolean isPressedFirst = true;
 
     @Override
     protected int getMainLayout() {
@@ -101,11 +102,23 @@ public class LoginActivity extends BaseViewPresenterActivity<LoginPresenter> imp
                     }
                     return handled;
                 });
+        startAnimation();
+    }
 
-        ScaleAnimation fade_in =  new ScaleAnimation(0f, 1f, 0f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        fade_in.setDuration(600);
-        fade_in.setFillAfter(true);
-        btnSubmit.startAnimation(fade_in);
+    private void startAnimation() {
+        ScaleAnimation fadeInBtn = new ScaleAnimation(0f, 1f, 0f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        fadeInBtn.setDuration(600);
+        fadeInBtn.setFillAfter(true);
+        btnSubmit.startAnimation(fadeInBtn);
+
+        ScaleAnimation fadeInForm = new ScaleAnimation(
+                1f, 1f, // Start and end values for the X axis scaling
+                0f, 1f, // Start and end values for the Y axis scaling
+                Animation.RELATIVE_TO_SELF, 0f, // Pivot point of X scaling
+                Animation.RELATIVE_TO_SELF, 1f); // Pivot point of Y scaling
+        fadeInForm.setDuration(400);
+        fadeInForm.setFillAfter(true);
+        lnrLytLogin.startAnimation(fadeInForm);
     }
 
     @OnClick(R.id.btn_submit)
