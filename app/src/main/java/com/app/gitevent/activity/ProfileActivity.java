@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.app.gitevent.R;
@@ -50,6 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
         getSupportActionBar().setTitle("Profile");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mContext = this;
         Bundle bundle = getIntent().getExtras();
         if (null != bundle && bundle.containsKey(GitUtils.EXTRA_ACOOUNT_OBJ))
@@ -91,5 +93,16 @@ public class ProfileActivity extends AppCompatActivity {
         else
             followStats = "Following: " + mUserAccount.getFollowing();
         GitUtils.setTextIntoTextView(txtVwFollowingFollowersCount, followStats);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

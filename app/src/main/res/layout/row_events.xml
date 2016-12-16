@@ -25,13 +25,18 @@
             android:gravity="center"
             android:textColor="@color/light_grey"
             android:textSize="@dimen/font_twelve"
-            tools:text="CE"/>
+            tools:text="Dec 13, 2016"/>
 
-        <ImageView
-            android:id="@+id/imgVw_avatar"
+        <com.app.gitevent.customViews.GitTextView
+            android:id="@+id/txtVw_initial"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginRight="@dimen/margin_twelve"
+            android:background="@drawable/ic_round_slot"
+            tools:text="P"
+            android:textSize="@dimen/font_eighteen"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:gravity="center"/>
 
         <com.app.gitevent.customViews.GitTextView
@@ -39,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/txtVw_dateTime"
-            android:layout_toRightOf="@id/imgVw_avatar"
+            android:layout_toRightOf="@id/txtVw_initial"
             android:textColor="@color/black"
             android:textSize="@dimen/font_eighteen"
             tools:text="CreateEvent"/>
@@ -50,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txtVw_eventName"
             android:layout_marginTop="@dimen/margin_four"
-            android:layout_toRightOf="@id/imgVw_avatar"
+            android:layout_toRightOf="@id/txtVw_initial"
             android:textColor="@color/dark_grey"
             android:textSize="@dimen/font_fourteen"
             tools:text="Master"/>
@@ -61,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txtVw_branch"
             android:layout_marginTop="@dimen/margin_four"
-            android:layout_toRightOf="@id/imgVw_avatar"
+            android:layout_toRightOf="@id/txtVw_initial"
             android:maxLines="2"
             android:textColor="@color/dark_grey"
             android:textSize="@dimen/font_fourteen"

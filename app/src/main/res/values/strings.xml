@@ -5,6 +5,8 @@
     <string name="transition_login_image" translatable="false">transition_login_image</string>
     <string name="transition_fab_account" translatable="false">transition_account_fab</string>
     <string name="transition_fab_avatar" translatable="false">transition_avatar</string>
+    <string name="transition_detail_initials"  translatable="false">transition_detail_initials</string>
+    <string name="transition_event_name"  translatable="false">transition_event_name</string>
     <string name="please_wait">Please wait</string>
     <string name="dot_bullet">\u2022</string>
 

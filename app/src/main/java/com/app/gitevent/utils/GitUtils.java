@@ -6,7 +6,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.URLUtil;
@@ -24,6 +27,8 @@ import java.util.Date;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
+import static android.view.View.GONE;
+
 /**
  * Created by niranjan on 12/7/16.
  */
@@ -32,7 +37,7 @@ public class GitUtils {
     //public static String yyyyMMdd = ;  2016-12-07T06:52:16Z
     public static String yyyyMMddhhmmZ = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     public static String hhmma = "hh:mm a";
-    public static String  MMMMddyyyy= "MMMM dd, yyyy";
+    public static String MMMMddyyyy = "MMMM dd, yyyy";
 
     public static final int DEFAULT_GROUP_ID = 1000;
     public static final int DEFAULT_CHILD_ID = 10000;
@@ -45,10 +50,11 @@ public class GitUtils {
     public final static int VIEW_TYPE_LOAD_MORE = 3000;
     public final static int VIEW_TYPE_EVENTS = 3001;
 
-    private static long miliSecsInOneMin = 60*1000;
+    private static long miliSecsInOneMin = 60 * 1000;
     private static long miliSecsInOneHour = 60 * miliSecsInOneMin;
     private static long miliSecsInOneDay = 24 * miliSecsInOneHour;
     public static String EXTRA_ACOOUNT_OBJ = "extra_acoount_obj";
+    public static String EXTRA_EVENT_OBJ = "extra_event_obj";
 
     public static Date parseDateString(String dateFormat, String dateString) {
         try {
@@ -115,15 +121,16 @@ public class GitUtils {
         int[] colorsArray = context.getResources().getIntArray(R.array.git_event_initials_colors);
         switch (str) {
             case 'A':
-            case 'N':
+            case 'C':
                 return colorsArray[0];
 
             case 'B':
             case 'O':
                 return colorsArray[1];
 
-            case 'C':
+
             case 'P':
+            case 'N':
                 return colorsArray[2];
 
             case 'D':
@@ -225,13 +232,23 @@ public class GitUtils {
         }
     }
 
-    public static void setTextIntoTextView(GitTextView txtVw, String text){
+    public static void setTextIntoTextView(GitTextView txtVw, String text) {
         if (!TextUtils.isEmpty(text)) {
             txtVw.setText(text);
             txtVw.setVisibility(View.VISIBLE);
+        } else
+            txtVw.setVisibility(GONE);
+    }
+
+    public static void setTitleDetailText(String title, String detail, GitTextView txtVw) {
+        if (TextUtils.isEmpty(detail)) {
+            txtVw.setVisibility(GONE);
+            return;
         }
-        else
-            txtVw.setVisibility(View.GONE);
+        String finalString = title + " " + detail;
+        Spannable sb = new SpannableString(finalString);
+        sb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        txtVw.setText(sb);
     }
 
 }

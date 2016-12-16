@@ -10,6 +10,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -92,12 +93,23 @@ public class GitEventsActivity extends BaseViewPresenterActivity<GitEventsPresen
         swipeRefreshLayoutEvents.setOnRefreshListener(this);
         GitUtils.setSwipeRefreshLayoutColor(swipeRefreshLayoutEvents);
 
-        mAdapter = new GitEventsAdapter(mEvents, mContext, this);
+        mAdapter = new GitEventsAdapter(mEvents, this, this);
         mLayoutManager = new LinearLayoutManager(mContext);
         recyclerVwEvents.setLayoutManager(mLayoutManager);
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.margin_eight);
         recyclerVwEvents.addItemDecoration(new RecyclerItemDecoration(spacingInPixels));
         recyclerVwEvents.setAdapter(mAdapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

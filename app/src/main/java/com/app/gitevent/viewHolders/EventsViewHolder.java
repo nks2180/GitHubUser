@@ -1,11 +1,11 @@
 package com.app.gitevent.viewHolders;
 
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.app.gitevent.R;
 import com.app.gitevent.customViews.GitTextView;
@@ -26,13 +26,13 @@ public class EventsViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.txtVw_dateTime)
     GitTextView txtVwDateTime;
     @BindView(R.id.txtVw_eventName)
-    GitTextView txtVwEventName;
+    public GitTextView txtVwEventName;
     @BindView(R.id.txtVw_branch)
     GitTextView txtVwBranch;
     @BindView(R.id.txtVw_description)
     GitTextView txtVwDescription;
-    @BindView(R.id.imgVw_avatar)
-    ImageView imgVwAvatar;
+    @BindView(R.id.txtVw_initial)
+    public GitTextView txtVwInitial;
 
     public static
     @LayoutRes
@@ -47,21 +47,26 @@ public class EventsViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void loadDataIntoUI(EventsViewHolder eventsViewHolder, GitEvent event) {
-        txtVwEventName.setText(event.getType());
         eventsViewHolder.txtVwDateTime.setText(GitUtils.getTimeAgo(GitUtils.yyyyMMddhhmmZ, event.getCreatedAt()));
-        GitUtils.loadRoundedImageThroughPicasso(mContext, event.getActor().getAvatarUrl(), eventsViewHolder.imgVwAvatar, R.drawable.ic_account);
-
         eventsViewHolder.txtVwBranch.setText(event.getRepo().getName());
+
+        if (!TextUtils.isEmpty(event.getType())) {
+            txtVwEventName.setText(event.getType());
+            Character initial = event.getType().charAt(0);
+            GradientDrawable drawable = (GradientDrawable) txtVwInitial.getBackground();
+            drawable.setColor(GitUtils.getColorForName(mContext, initial));
+            txtVwInitial.setText(String.valueOf(initial));
+        }
 
         eventsViewHolder.txtVwDescription.setVisibility(View.VISIBLE);
         if (!TextUtils.isEmpty(event.getPayload().getDescription()))
             eventsViewHolder.txtVwDescription.setText(event.getPayload().getDescription());
-        else {
-            if (null != event.getPayload().getIssue() && !TextUtils.isEmpty(event.getPayload().getIssue().getTitle()))
+        else if (null != event.getPayload().getIssue() && !TextUtils.isEmpty(event.getPayload().getIssue().getTitle()))
                 eventsViewHolder.txtVwDescription.setText(event.getPayload().getIssue().getTitle());
+        else if(null != event.getPayload() && null != event.getPayload().getCommits() && event.getPayload().getCommits().size() > 0)
+            GitUtils.setTextIntoTextView(eventsViewHolder.txtVwDescription, event.getPayload().getCommits().get(0).getMessage());
             else
                 eventsViewHolder.txtVwDescription.setVisibility(View.GONE);
-        }
     }
 
 }

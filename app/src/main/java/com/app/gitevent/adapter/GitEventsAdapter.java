@@ -1,11 +1,16 @@
 package com.app.gitevent.adapter;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.app.gitevent.R;
+import com.app.gitevent.activity.GitEventDetailActivity;
 import com.app.gitevent.model.GitEvent;
 import com.app.gitevent.utils.GitUtils;
 import com.app.gitevent.utils.LoadMoreCallbacks;
@@ -20,11 +25,11 @@ import java.util.List;
 
 public class GitEventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     List<GitEvent> mEvents;
-    Context mContext;
+    Activity mContext;
     boolean isLoadingFeeds = false;
     private LoadMoreCallbacks mLoadMoreCallbacks;
 
-    public GitEventsAdapter(List<GitEvent> events, Context context, LoadMoreCallbacks loadMoreCallbacks) {
+    public GitEventsAdapter(List<GitEvent> events, Activity context, LoadMoreCallbacks loadMoreCallbacks) {
         this.mEvents = events;
         this.mContext = context;
         this.mLoadMoreCallbacks = loadMoreCallbacks;
@@ -57,6 +62,16 @@ public class GitEventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 GitEvent event = mEvents.get(position);
                 EventsViewHolder eventsViewHolder = (EventsViewHolder) viewHolder;
                 eventsViewHolder.loadDataIntoUI(eventsViewHolder, event);
+                eventsViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext, GitEventDetailActivity.class);
+                        intent.putExtra(GitUtils.EXTRA_EVENT_OBJ, event);
+                        Pair<View, String> pairOne = Pair.create(eventsViewHolder.txtVwInitial, mContext.getResources().getString(R.string.transition_detail_initials));
+                        ActivityOptionsCompat options =  ActivityOptionsCompat.makeSceneTransitionAnimation(mContext,pairOne);
+                        mContext.startActivity(intent, options.toBundle());
+                    }
+                });
                 break;
             case GitUtils.VIEW_TYPE_LOAD_MORE:
                 LoadMoreViewHolder loadMoreViewHolder = (LoadMoreViewHolder) viewHolder;

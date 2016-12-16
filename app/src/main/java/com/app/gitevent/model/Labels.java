@@ -3,11 +3,13 @@ package com.app.gitevent.model;
 import com.bluelinelabs.logansquare.annotation.JsonField;
 import com.bluelinelabs.logansquare.annotation.JsonObject;
 
+import java.io.Serializable;
+
 /**
  * Created by niranjan on 12/14/16.
  */
 @JsonObject
-public class Labels {
+public class Labels implements Serializable{
     @JsonField(name = "id")
     private int id;
     @JsonField(name = "url")
