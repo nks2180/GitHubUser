@@ -3,10 +3,10 @@ package com.app.gitevent.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -57,8 +57,6 @@ public class GitEventsActivity extends BaseViewPresenterActivity<GitEventsPresen
     ImageView fabAccount;
     @BindView(R.id.frmLyt_events)
     RelativeLayout frmLytEvents;
-    @BindView(R.id.cardVw)
-    CardView cardVw;
     private RecyclerView.LayoutManager mLayoutManager;
 
     Context mContext;
@@ -79,14 +77,24 @@ public class GitEventsActivity extends BaseViewPresenterActivity<GitEventsPresen
         Bundle bundle = getIntent().getExtras();
         if (null != bundle && bundle.containsKey(GitUtils.EXTRA_ACOOUNT_OBJ))
             mUserAccount = (LoginResponse) bundle.getSerializable(GitUtils.EXTRA_ACOOUNT_OBJ);
+
+        setUpRecyclerView();
+        eventsPresenter.setUserName(mUserAccount.getLogin());
+        eventsPresenter.fetchEvents(true);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+               loadProfileImage();
+            }
+        }, 500);
+    }
+
+    private void loadProfileImage(){
         if (null != mUserAccount && !TextUtils.isEmpty(mUserAccount.getAvatarUrl())) {
             GitUtils.loadRoundedImageThroughPicasso(mContext, mUserAccount.getAvatarUrl(), fabAccount, R.drawable.ic_fab_account);
 
         }
-        setUpRecyclerView();
-        eventsPresenter.setUserName(mUserAccount.getLogin());
-        eventsPresenter.fetchEvents(true);
-
     }
 
     private void setUpRecylerVw() {
@@ -160,7 +168,7 @@ public class GitEventsActivity extends BaseViewPresenterActivity<GitEventsPresen
     public void onSubmitBtnTapped() {
         Intent profileIntent = new Intent(this, ProfileActivity.class);
         profileIntent.putExtra(GitUtils.EXTRA_ACOOUNT_OBJ, mUserAccount);
-        Pair<View, String> pairOne = Pair.create(cardVw, getResources().getString(R.string.transition_fab_avatar));
+        Pair<View, String> pairOne = Pair.create(fabAccount, getResources().getString(R.string.transition_fab_avatar));
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, pairOne);
         startActivity(profileIntent, options.toBundle());
 
@@ -168,7 +176,6 @@ public class GitEventsActivity extends BaseViewPresenterActivity<GitEventsPresen
 
     @Override
     public void onBackPressed() {
-        cardVw.setVisibility(GONE);
         fabAccount.setVisibility(View.GONE);
         super.onBackPressed();
     }
@@ -176,7 +183,6 @@ public class GitEventsActivity extends BaseViewPresenterActivity<GitEventsPresen
     @Override
     protected void onResume() {
         super.onResume();
-        cardVw.setVisibility(View.VISIBLE);
         fabAccount.setVisibility(View.VISIBLE);
     }
 }
